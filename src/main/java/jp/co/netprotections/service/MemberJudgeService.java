@@ -13,13 +13,17 @@ import jp.co.netprotections.dto.MemberJudgeResponseDto;
 public class MemberJudgeService {
 	// すべてのロジックを統合し、Controllerから呼び出すメソッド
 	public static Map<String, ArrayList<MemberJudgeResponseDto>> judgeCandidates(Map<String, ArrayList<MemberJudgeRequestDto>> requestedList) {
-		ArrayList<MemberJudgeResponseDto> judgedCandidatesResultList = new ArrayList<MemberJudgeResponseDto>();
 		ArrayList<MemberJudgeRequestDto> candidatesList = requestedList.get("memberCandidatesList");
+		ArrayList<MemberJudgeResponseDto> judgedCandidatesResultList = new ArrayList<MemberJudgeResponseDto>();
 		for (int i = 0; i < candidatesList.size(); i++) {
 			MemberJudgeRequestDto candidate = candidatesList.get(i);
 			MemberJudgeResponseDto candidateResult = new MemberJudgeResponseDto();
 			candidateResult.setMemberName(candidate.getMemberName());
-			if (MemberJudgeService.isWellEventPlanning(candidate)
+			//バリデーションロジック
+
+			// 評価ロジック
+			if (MemberJudgeService.isRightScore(candidate)
+				&& MemberJudgeService.isWellEventPlanning(candidate)
 				&& MemberJudgeService.isWellCogitation(candidate)
 				&& MemberJudgeService.isWellCoodination(candidate)
 				&& MemberJudgeService.sumPoints(candidate) > 10) {
@@ -33,6 +37,25 @@ public class MemberJudgeService {
 		Map<String, ArrayList<MemberJudgeResponseDto>> mappedJudgedCandidatesResultList = new HashMap<String, ArrayList<MemberJudgeResponseDto>>();
 		mappedJudgedCandidatesResultList.put("judgedCandidatesResultList", judgedCandidatesResultList);
 		return mappedJudgedCandidatesResultList;
+	}
+
+	// 入力されているスコアが正常の範囲(0-5)ならtrueを返す
+	public static boolean isRightScore(MemberJudgeRequestDto candidate) {
+		if (candidate.getEventPlanning() < 0
+			|| candidate.getEventPlanning() > 5
+			|| candidate.getCogitation() < 0
+			|| candidate.getCogitation() > 5
+			|| candidate.getCoodination() < 0
+			|| candidate.getCoodination() > 5
+			|| candidate.getProgrammingAbility() < 0
+			|| candidate.getProgrammingAbility() > 5
+			|| candidate.getInfrastructureKnowledge() < 0
+			|| candidate.getInfrastructureKnowledge() > 5
+			) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	// イベント企画力が1以下ならfalse、それ以外ならtrueを返す
