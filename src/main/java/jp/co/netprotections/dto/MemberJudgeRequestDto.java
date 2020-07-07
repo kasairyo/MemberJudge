@@ -45,3 +45,4 @@ public class MemberJudgeRequestDto {
 		this.infrastructureKnowledge = infrastructureKnowledge;
 	}
 }
+

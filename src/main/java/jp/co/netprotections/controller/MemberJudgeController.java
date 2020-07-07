@@ -14,20 +14,20 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jp.co.netprotections.dto.MemberJudgeRequestDto;
+import jp.co.netprotections.dto.MemberJudgeResponseDto;
+import jp.co.netprotections.service.MemberJudgeService;
 
 @RestController
 public class MemberJudgeController {
 	@RequestMapping(value = "/judge", method = {RequestMethod.POST})
-	public Map<String, ArrayList<MemberJudgeRequestDto>> judgeMember(@RequestBody String candidates) {
+	public Map<String, ArrayList<MemberJudgeResponseDto>> judgeMember(@RequestBody String requestBody) {
 		ObjectMapper mapper = new ObjectMapper();
-		Map<String, ArrayList<MemberJudgeRequestDto>> resultList = new HashMap<String, ArrayList<MemberJudgeRequestDto>>();
-		try { resultList = mapper.readValue(candidates, new TypeReference<Map<String, ArrayList<MemberJudgeRequestDto>>>() { });
+		Map<String, ArrayList<MemberJudgeRequestDto>> candidatesList = new HashMap<String, ArrayList<MemberJudgeRequestDto>>();
+		try {
+			candidatesList = mapper.readValue(requestBody, new TypeReference<Map<String, ArrayList<MemberJudgeRequestDto>>>() { });
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return resultList;
-	}
-	@RequestMapping(value = "/judge", method = {RequestMethod.GET})
-	public String test() {
-		return "test";
+		return MemberJudgeService.judgeCandidates(candidatesList);
 	}
 }
