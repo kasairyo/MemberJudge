@@ -22,12 +22,12 @@ public class MemberJudgeController {
 	@RequestMapping(value = "/judge", method = {RequestMethod.POST})
 	public Map<String, ArrayList<MemberJudgeResponseDto>> judgeMember(@RequestBody String requestBody) {
 		ObjectMapper mapper = new ObjectMapper();
-		Map<String, ArrayList<MemberJudgeRequestDto>> candidatesList = new HashMap<String, ArrayList<MemberJudgeRequestDto>>();
+		Map<String, ArrayList<MemberJudgeRequestDto>> requestedList = new HashMap<String, ArrayList<MemberJudgeRequestDto>>();
 		try {
-			candidatesList = mapper.readValue(requestBody, new TypeReference<Map<String, ArrayList<MemberJudgeRequestDto>>>() { });
+			requestedList = mapper.readValue(requestBody, new TypeReference<Map<String, ArrayList<MemberJudgeRequestDto>>>() { });
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return MemberJudgeService.judgeCandidates(candidatesList);
+		return MemberJudgeService.judgeCandidates(requestedList);
 	}
 }

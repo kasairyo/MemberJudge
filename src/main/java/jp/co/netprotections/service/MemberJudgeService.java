@@ -12,11 +12,11 @@ import jp.co.netprotections.dto.MemberJudgeResponseDto;
 @Service
 public class MemberJudgeService {
 	// すべてのロジックを統合し、Controllerから呼び出すメソッド
-	public static Map<String, ArrayList<MemberJudgeResponseDto>> judgeCandidates(Map<String, ArrayList<MemberJudgeRequestDto>> candidatesList) {
+	public static Map<String, ArrayList<MemberJudgeResponseDto>> judgeCandidates(Map<String, ArrayList<MemberJudgeRequestDto>> requestedList) {
 		ArrayList<MemberJudgeResponseDto> judgedCandidatesResultList = new ArrayList<MemberJudgeResponseDto>();
-		ArrayList<MemberJudgeRequestDto> candidates = MemberJudgeService.extractCandidates(candidatesList);
-		for (int i = 0; i < candidates.size(); i++) {
-			MemberJudgeRequestDto candidate = candidates.get(i);
+		ArrayList<MemberJudgeRequestDto> candidatesList = requestedList.get("memberCandidatesList");
+		for (int i = 0; i < candidatesList.size(); i++) {
+			MemberJudgeRequestDto candidate = candidatesList.get(i);
 			MemberJudgeResponseDto candidateResult = new MemberJudgeResponseDto();
 			candidateResult.setMemberName(candidate.getMemberName());
 			if (MemberJudgeService.isWellEventPlanning(candidate)
@@ -33,11 +33,6 @@ public class MemberJudgeService {
 		Map<String, ArrayList<MemberJudgeResponseDto>> mappedJudgedCandidatesResultList = new HashMap<String, ArrayList<MemberJudgeResponseDto>>();
 		mappedJudgedCandidatesResultList.put("judgedCandidatesResultList", judgedCandidatesResultList);
 		return mappedJudgedCandidatesResultList;
-	}
-
-	// Mapでネストされているリクエストから中身を展開
-	public static ArrayList<MemberJudgeRequestDto> extractCandidates(Map<String, ArrayList<MemberJudgeRequestDto>> map) {
-		return map.get("memberCandidatesList");
 	}
 
 	// イベント企画力が1以下ならfalse、それ以外ならtrueを返す
