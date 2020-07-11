@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import jp.co.netprotections.dto.MemberJudgeRequestDto;
 import jp.co.netprotections.dto.MemberJudgeResponseDto;
+import jp.co.netprotections.service.impl.MemberJudgeServiceImpl;
 
 @Service
 public class MemberJudgeService {
-	// すべてのロジックを統合し、Controllerから呼び出すメソッド
 	public static Map<String, ArrayList<MemberJudgeResponseDto>> judgeCandidates(Map<String, ArrayList<MemberJudgeRequestDto>> requestedList) {
 		ArrayList<MemberJudgeRequestDto> candidatesList = requestedList.get("memberCandidatesList");
 		ArrayList<MemberJudgeResponseDto> judgedCandidatesResultList = new ArrayList<MemberJudgeResponseDto>();
@@ -19,14 +19,11 @@ public class MemberJudgeService {
 			MemberJudgeRequestDto candidate = candidatesList.get(i);
 			MemberJudgeResponseDto candidateResult = new MemberJudgeResponseDto();
 			candidateResult.setMemberName(candidate.getMemberName());
-			//バリデーションロジック
-
-			// 評価ロジック
-			if (MemberJudgeService.isRightScore(candidate)
-				&& MemberJudgeService.isWellEventPlanning(candidate)
-				&& MemberJudgeService.isWellCogitation(candidate)
-				&& MemberJudgeService.isWellCoodination(candidate)
-				&& MemberJudgeService.sumPoints(candidate) > 10) {
+			if (MemberJudgeServiceImpl.isRightScore(candidate)
+				&& MemberJudgeServiceImpl.isWellEventPlanning(candidate)
+				&& MemberJudgeServiceImpl.isWellCogitation(candidate)
+				&& MemberJudgeServiceImpl.isWellCoodination(candidate)
+				&& MemberJudgeServiceImpl.isOverPassingScore(candidate, 10)) {
 				candidateResult.setEnlistedPropriety(true);
 				judgedCandidatesResultList.add(candidateResult);
 			} else {
@@ -34,65 +31,38 @@ public class MemberJudgeService {
 				judgedCandidatesResultList.add(candidateResult);
 			}
 		}
-		Map<String, ArrayList<MemberJudgeResponseDto>> mappedJudgedCandidatesResultList = new HashMap<String, ArrayList<MemberJudgeResponseDto>>();
-		mappedJudgedCandidatesResultList.put("judgedCandidatesResultList", judgedCandidatesResultList);
-		return mappedJudgedCandidatesResultList;
+		Map<String, ArrayList<MemberJudgeResponseDto>> resultResponse = new HashMap<String, ArrayList<MemberJudgeResponseDto>>();
+		resultResponse.put("judgedCandidatesResultList", judgedCandidatesResultList);
+		return resultResponse;
 	}
 
-	// 入力されているスコアが正常の範囲(0-5)ならtrueを返す
-	public static boolean isRightScore(MemberJudgeRequestDto candidate) {
-		if (candidate.getEventPlanning() < 0
-			|| candidate.getEventPlanning() > 5
-			|| candidate.getCogitation() < 0
-			|| candidate.getCogitation() > 5
-			|| candidate.getCoodination() < 0
-			|| candidate.getCoodination() > 5
-			|| candidate.getProgrammingAbility() < 0
-			|| candidate.getProgrammingAbility() > 5
-			|| candidate.getInfrastructureKnowledge() < 0
-			|| candidate.getInfrastructureKnowledge() > 5
-			) {
-			return false;
+
+	/* 候補者情報のバリデーションチェックと評価のメソッドを作ってみたが、Errorsの扱いがわからずスタック。＠ExceptionHandler (+ @ControllerAdvice)を使うっぽい
+	 * 参照）https://kuwalab.hatenablog.jp/entry/2014/02/02/SpringMVCJSON
+	 * 参照）https://bit.ly/3iW0yo6
+	 * 参照）http://namihira.hatenablog.com/entry/20150913/1442136070
+	 *
+	public static MemberJudgeResponseDto judgeCandidate(@Valid MemberJudgeRequestDto candidate, Errors errors) {
+		MemberJudgeResponseDto candidateResult = new MemberJudgeResponseDto();
+		candidateResult.setMemberName(candidate.getMemberName());
+		if (errors.hasErrors()) {
+			candidateResult.setEnlistedPropriety(false);
+			ArrayList<String> errorList = new ArrayList<String>();
+			for (ObjectError oe : errors.getAllErrors()) {
+		       errorList.add(oe.getDefaultMessage());
+		    }
+			candidateResult.setErrorList(errorList);
+			return candidateResult;
+		} else if (MemberJudgeService.isWellEventPlanning(candidate)
+			&& MemberJudgeService.isWellCogitation(candidate)
+			&& MemberJudgeService.isWellCoodination(candidate)
+			&& MemberJudgeService.isOverPassingScore(candidate, 10)) {
+			candidateResult.setEnlistedPropriety(true);
+			return candidateResult;
 		} else {
-			return true;
+			candidateResult.setEnlistedPropriety(false);
+			return candidateResult;
 		}
 	}
-
-	// イベント企画力が1以下ならfalse、それ以外ならtrueを返す
-	public static boolean isWellEventPlanning(MemberJudgeRequestDto candidate) {
-		if (candidate.getEventPlanning() <= 1) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	// 思考力が1以下ならfalse、それ以外ならtrueを返す
-	public static boolean isWellCogitation(MemberJudgeRequestDto candidate) {
-		if (candidate.getCogitation() <= 1) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	// 調整力が1以下ならfalse、それ以外ならtrueを返す
-	public static boolean isWellCoodination(MemberJudgeRequestDto candidate) {
-		if (candidate.getCoodination() <= 1) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	// 候補者の合計得点を算出する
-	public static int sumPoints(MemberJudgeRequestDto candidate) {
-		int totalPoints = 0;
-		totalPoints += candidate.getEventPlanning();
-		totalPoints += candidate.getCogitation();
-		totalPoints += candidate.getCoodination();
-		totalPoints += candidate.getProgrammingAbility();
-		totalPoints += candidate.getInfrastructureKnowledge();
-		return totalPoints;
-	}
+	*/
 }

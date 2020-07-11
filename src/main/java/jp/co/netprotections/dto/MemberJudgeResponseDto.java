@@ -1,8 +1,11 @@
 package jp.co.netprotections.dto;
 
+import java.util.ArrayList;
+
 public class MemberJudgeResponseDto {
 	private String memberName;
 	private boolean enlistedPropriety;
+	private ArrayList<String> errorList;
 
 	public String getMemberName() {
 		return memberName;
@@ -18,5 +21,13 @@ public class MemberJudgeResponseDto {
 
 	public void setEnlistedPropriety(boolean enlistedPropriety) {
 		this.enlistedPropriety = enlistedPropriety;
+	}
+
+	public ArrayList<String> getErrorList() {
+		return errorList;
+	}
+
+	public void setErrorList(ArrayList<String> errorList) {
+		this.errorList = errorList;
 	}
 }

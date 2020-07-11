@@ -1,13 +1,14 @@
 package jp.co.netprotections.controller;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.Assert.*;
 
-@SpringBootTest
-class MemberJudgeControllerTest {
+import org.junit.Test;
+
+public class MemberJudgeControllerTest {
 
 	@Test
-	void contextLoads() {
+	public void test() {
+		fail("まだ実装されていません");
 	}
 
 }
