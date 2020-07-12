@@ -1,5 +1,7 @@
 package jp.co.netprotections.service.impl;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -7,24 +9,31 @@ import jp.co.netprotections.dto.MemberJudgeRequestDto;
 
 @Component
 public class MemberJudgeServiceImpl {
-	// 入力されているスコアが正常の範囲(0-5)ならtrueを返す
+	// スコアが不正な場合、エラーメッセージを返す
 	@Autowired
-	public static boolean isRightScore(MemberJudgeRequestDto candidate) {
-		if (candidate.getEventPlanning() >= 0
-			&& candidate.getEventPlanning() <= 5
-			&& candidate.getCogitation() >= 0
-			&& candidate.getCogitation() <= 5
-			&& candidate.getCoodination() >= 0
-			&& candidate.getCoodination() <= 5
-			&& candidate.getProgrammingAbility() >= 0
-			&& candidate.getProgrammingAbility() <= 5
-			&& candidate.getInfrastructureKnowledge() >= 0
-			&& candidate.getInfrastructureKnowledge() <= 5
-			) {
-			return true;
-		} else {
-			return false;
+	public static ArrayList<String> validateScore(MemberJudgeRequestDto candidate) {
+		ArrayList<String> errorList = new ArrayList<String>();
+		if (candidate.getEventPlanning() < 0
+			|| candidate.getEventPlanning() > 5) {
+			errorList.add("eventPlanningは0~5の整数値を入力してください。");
 		}
+		if(candidate.getCogitation() < 0
+			|| candidate.getCogitation() > 5) {
+			errorList.add("cogitationは0~5の整数値を入力してください。");
+		}
+		if(candidate.getCoodination() < 0
+			|| candidate.getCoodination() > 5) {
+			errorList.add("coodinationは0~5の整数値を入力してください。");
+		}
+		if(candidate.getProgrammingAbility() < 0
+			|| candidate.getProgrammingAbility() > 5) {
+			errorList.add("programmingAbilityは0~5の整数値を入力してください。");
+		}
+		if(candidate.getInfrastructureKnowledge() < 0
+			|| candidate.getInfrastructureKnowledge() > 5) {
+			errorList.add("infrastructureKnowledgeは0~5の整数値を入力してください。");
+		}
+		return errorList;
 	}
 
 	// イベント企画力が1以下ならfalse、それ以外ならtrueを返す

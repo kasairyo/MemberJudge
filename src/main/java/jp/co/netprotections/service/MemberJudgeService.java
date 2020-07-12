@@ -16,65 +16,49 @@ public class MemberJudgeService {
 	public static MemberJudgeResponseListDto judgeCandidates(MemberJudgeRequestListDto requestedList) {
 		List<MemberJudgeRequestDto> candidatesList = requestedList.getMemberCandidatesList();
 		List<MemberJudgeResponseDto> judgedCandidatesResultList = new ArrayList<MemberJudgeResponseDto>();
-		for (int i = 0; i < candidatesList.size(); i++) {
-			MemberJudgeRequestDto candidate = candidatesList.get(i);
-			MemberJudgeResponseDto candidateResult = new MemberJudgeResponseDto();
-			candidateResult.setMemberName(candidate.getMemberName());
-			if (MemberJudgeServiceImpl.isRightScore(candidate)
-				&& MemberJudgeServiceImpl.isWellEventPlanning(candidate)
-				&& MemberJudgeServiceImpl.isWellCogitation(candidate)
-				&& MemberJudgeServiceImpl.isWellCoodination(candidate)
-				&& MemberJudgeServiceImpl.isOverPassingScore(candidate, 10)) {
-				candidateResult.setEnlistedPropriety(true);
-				judgedCandidatesResultList.add(candidateResult);
-			} else {
-				candidateResult.setEnlistedPropriety(false);
+		if (candidatesList.size() != 0) {
+			for (int i = 0; i < candidatesList.size(); i++) {
+				MemberJudgeRequestDto candidate = candidatesList.get(i);
+				MemberJudgeResponseDto candidateResult = new MemberJudgeResponseDto();
+				ArrayList<String> errorList = new ArrayList<String>();
+				// 隊員名のバリデーションチェック
+				if (candidate.getMemberName().isEmpty()) {
+					candidateResult.setMemberName(null);
+					errorList.add("隊員名が入力されていません。");
+				} else {
+					candidateResult.setMemberName(candidate.getMemberName());
+				}
+				// スコアのバリデーションチェック
+				errorList.addAll(MemberJudgeServiceImpl.validateScore(candidate));
+				candidateResult.setErrorList(errorList);
+				//スコアの評価
+				if (errorList.isEmpty()) {
+					if (MemberJudgeServiceImpl.isWellEventPlanning(candidate)
+						&& MemberJudgeServiceImpl.isWellCogitation(candidate)
+						&& MemberJudgeServiceImpl.isWellCoodination(candidate)
+						&& MemberJudgeServiceImpl.isOverPassingScore(candidate, 10)) {
+						candidateResult.setEnlistedPropriety(true);
+					} else {
+						candidateResult.setEnlistedPropriety(false);
+					}
+				}
 				judgedCandidatesResultList.add(candidateResult);
 			}
-		}
-		MemberJudgeResponseListDto resultResponse = new MemberJudgeResponseListDto();
-		resultResponse.setJudgedCandidatesResultList(judgedCandidatesResultList);
-		return resultResponse;
-	}
-
-
-
-
-
-	/* バリデーション用の部品。
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public String handleMethodArgumentNotValidException(MethodArgumentNotValidException error) {
-		return error.getMessage();
-	}
-	*/
-
-	/* 候補者情報のバリデーションチェックと評価のメソッドを作ってみたが、Errorsの扱いがわからずスタック。＠ExceptionHandlerを使うっぽい
-	 * 参照）https://qiita.com/NagaokaKenichi/items/2f199134a881a776b717
-	 * 参照）https://kuwalab.hatenablog.jp/entry/2014/02/02/SpringMVCJSON
-	 * 参照）https://bit.ly/3iW0yo6
-	 * 参照）http://namihira.hatenablog.com/entry/20150913/1442136070
-	 * 参照）https://terasolunaorg.github.io/guideline/5.2.1.RELEASE/ja/ArchitectureInDetail/WebServiceDetail/REST.html　←まだ読んでないけど、参考になりそう（けど重め）
-	public static MemberJudgeResponseDto judgeCandidate(@Valid MemberJudgeRequestDto candidate, Errors errors) {
-		MemberJudgeResponseDto candidateResult = new MemberJudgeResponseDto();
-		candidateResult.setMemberName(candidate.getMemberName());
-		if (errors.hasErrors()) {
-			candidateResult.setEnlistedPropriety(false);
-			ArrayList<String> errorList = new ArrayList<String>();
-			for (ObjectError oe : errors.getAllErrors()) {
-		       errorList.add(oe.getDefaultMessage());
-		    }
-			candidateResult.setErrorList(errorList);
-			return candidateResult;
-		} else if (MemberJudgeService.isWellEventPlanning(candidate)
-			&& MemberJudgeService.isWellCogitation(candidate)
-			&& MemberJudgeService.isWellCoodination(candidate)
-			&& MemberJudgeService.isOverPassingScore(candidate, 10)) {
-			candidateResult.setEnlistedPropriety(true);
-			return candidateResult;
+			MemberJudgeResponseListDto resultResponse = new MemberJudgeResponseListDto();
+			resultResponse.setJudgedCandidatesResultList(judgedCandidatesResultList);
+			return resultResponse;
+		// 隊員情報が入力されているかどうかのバリデーションチェック
 		} else {
-			candidateResult.setEnlistedPropriety(false);
-			return candidateResult;
+			MemberJudgeResponseDto error = new MemberJudgeResponseDto();
+			error.setEnlistedPropriety(false);
+			ArrayList<String> errorList = new ArrayList<String>();
+			errorList.add("隊員情報が1件も入力されていません。");
+			error.setErrorList(errorList);
+			ArrayList<MemberJudgeResponseDto> errorResponse = new ArrayList<MemberJudgeResponseDto>();
+			errorResponse.add(error);
+			MemberJudgeResponseListDto resultResponse = new MemberJudgeResponseListDto();
+			resultResponse.setJudgedCandidatesResultList(errorResponse);
+			return resultResponse;
 		}
 	}
-	*/
 }

@@ -154,28 +154,6 @@ public class MemberJudgeServiceTest {
 		assertEquals(false, MemberJudgeService.judgeCandidates(request).getJudgedCandidatesResultList().get(0).isEnlistedPropriety());
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/////////////////値がnullの時の扱いがうまくいっていない！！！/////////////////
 	@Test
 	public void judgeCandidatesTestFalse06() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
@@ -193,26 +171,7 @@ public class MemberJudgeServiceTest {
 		assertEquals(false, MemberJudgeService.judgeCandidates(request).getJudgedCandidatesResultList().get(0).isEnlistedPropriety());
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	// こちらのテストでは失敗するが、Postman上では同一条件にてテストをパスすることが確認できた
 	@Test
 	public void judgeCandidatesTestFalse07() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();

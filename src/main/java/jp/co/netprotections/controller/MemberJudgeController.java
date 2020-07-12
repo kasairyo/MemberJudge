@@ -16,7 +16,6 @@ import jp.co.netprotections.service.MemberJudgeService;
 public class MemberJudgeController {
 	@RequestMapping(value = "/judge", method = {RequestMethod.POST})
 	public MemberJudgeResponseListDto judgeMember(@RequestBody @Valid MemberJudgeRequestListDto requestedList) {
-		requestedList.getMemberCandidatesList();
 		return MemberJudgeService.judgeCandidates(requestedList);
 	}
 }
