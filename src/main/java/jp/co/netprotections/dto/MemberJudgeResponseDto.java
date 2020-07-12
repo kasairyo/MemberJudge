@@ -2,6 +2,9 @@ package jp.co.netprotections.dto;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberJudgeResponseDto {
 	private String memberName;
 	private boolean enlistedPropriety;

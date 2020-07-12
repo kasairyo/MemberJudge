@@ -4,6 +4,9 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberJudgeRequestDto {
 	@NotNull(message = "候補者名を入力してください。")
 	private String memberName;

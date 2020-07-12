@@ -1,9 +1,14 @@
 package jp.co.netprotections.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import jp.co.netprotections.dto.MemberJudgeRequestDto;
 
+@Component
 public class MemberJudgeServiceImpl {
 	// 入力されているスコアが正常の範囲(0-5)ならtrueを返す
+	@Autowired
 	public static boolean isRightScore(MemberJudgeRequestDto candidate) {
 		if (candidate.getEventPlanning() >= 0
 			&& candidate.getEventPlanning() <= 5
@@ -23,6 +28,7 @@ public class MemberJudgeServiceImpl {
 	}
 
 	// イベント企画力が1以下ならfalse、それ以外ならtrueを返す
+	@Autowired
 	public static boolean isWellEventPlanning(MemberJudgeRequestDto candidate) {
 		if (candidate.getEventPlanning() <= 1) {
 			return false;
@@ -32,6 +38,7 @@ public class MemberJudgeServiceImpl {
 	}
 
 	// 思考力が1以下ならfalse、それ以外ならtrueを返す
+	@Autowired
 	public static boolean isWellCogitation(MemberJudgeRequestDto candidate) {
 		if (candidate.getCogitation() <= 1) {
 			return false;
@@ -41,6 +48,7 @@ public class MemberJudgeServiceImpl {
 	}
 
 	// 調整力が1以下ならfalse、それ以外ならtrueを返す
+	@Autowired
 	public static boolean isWellCoodination(MemberJudgeRequestDto candidate) {
 		if (candidate.getCoodination() <= 1) {
 			return false;
@@ -50,6 +58,7 @@ public class MemberJudgeServiceImpl {
 	}
 
 	// 候補者の合計得点を算出する
+	@Autowired
 	public static boolean isOverPassingScore(MemberJudgeRequestDto candidate, int passingScore) {
 		int totalScore = 0;
 		totalScore += candidate.getEventPlanning();
