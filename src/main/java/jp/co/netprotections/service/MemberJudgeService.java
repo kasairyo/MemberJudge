@@ -29,14 +29,11 @@ public class MemberJudgeService {
 					candidateResult.setMemberName(candidate.getMemberName());
 				}
 				// スコアのバリデーションチェック
-				errorList.addAll(MemberJudgeServiceImpl.validateScore(candidate));
+				errorList.addAll(MemberJudgeServiceImpl.validateScores(candidate));
 				candidateResult.setErrorList(errorList);
-				//スコアの評価
+				// スコアの評価
 				if (errorList.isEmpty()) {
-					if (MemberJudgeServiceImpl.isWellEventPlanning(candidate)
-						&& MemberJudgeServiceImpl.isWellCogitation(candidate)
-						&& MemberJudgeServiceImpl.isWellCoodination(candidate)
-						&& MemberJudgeServiceImpl.isOverPassingScore(candidate, 10)) {
+					if (MemberJudgeServiceImpl.judgeScores(candidate)) {
 						candidateResult.setEnlistedPropriety(true);
 					} else {
 						candidateResult.setEnlistedPropriety(false);
@@ -47,16 +44,16 @@ public class MemberJudgeService {
 			MemberJudgeResponseListDto resultResponse = new MemberJudgeResponseListDto();
 			resultResponse.setJudgedCandidatesResultList(judgedCandidatesResultList);
 			return resultResponse;
-		// 隊員情報が入力されているかどうかのバリデーションチェック
 		} else {
-			MemberJudgeResponseDto error = new MemberJudgeResponseDto();
-			error.setEnlistedPropriety(false);
+			// 隊員情報が1件以上入力されているかどうかのバリデーションチェック
+			MemberJudgeResponseDto errorCandidate = new MemberJudgeResponseDto();
 			ArrayList<String> errorList = new ArrayList<String>();
-			errorList.add("隊員情報が1件も入力されていません。");
-			error.setErrorList(errorList);
 			ArrayList<MemberJudgeResponseDto> errorResponse = new ArrayList<MemberJudgeResponseDto>();
-			errorResponse.add(error);
 			MemberJudgeResponseListDto resultResponse = new MemberJudgeResponseListDto();
+			errorCandidate.setEnlistedPropriety(false);
+			errorList.add("隊員情報が1件も入力されていません。");
+			errorCandidate.setErrorList(errorList);
+			errorResponse.add(errorCandidate);
 			resultResponse.setJudgedCandidatesResultList(errorResponse);
 			return resultResponse;
 		}

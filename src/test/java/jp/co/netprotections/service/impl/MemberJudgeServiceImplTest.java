@@ -11,7 +11,7 @@ import jp.co.netprotections.dto.MemberJudgeRequestDto;
 public class MemberJudgeServiceImplTest {
 
 	@Test
-	public void validateScoreTestNoError01() {
+	public void validateScoresTestNoError01() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(0);
 		candidate.setCogitation(0);
@@ -19,11 +19,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setProgrammingAbility(0);
 		candidate.setInfrastructureKnowledge(0);
 		ArrayList<String> expected = new ArrayList<String>();
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestNoError02() {
+	public void validateScoresTestNoError02() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(5);
 		candidate.setCogitation(5);
@@ -31,11 +31,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setProgrammingAbility(5);
 		candidate.setInfrastructureKnowledge(5);
 		ArrayList<String> expected = new ArrayList<String>();
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestEventPlanningError01() {
+	public void validateScoresTestEventPlanningError01() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(-1);
 		candidate.setCogitation(0);
@@ -44,11 +44,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setInfrastructureKnowledge(0);
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("eventPlanningは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestEventPlanningError02() {
+	public void validateScoresTestEventPlanningError02() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(6);
 		candidate.setCogitation(5);
@@ -57,11 +57,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setInfrastructureKnowledge(5);
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("eventPlanningは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestCogitationError01() {
+	public void validateScoresTestCogitationError01() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(0);
 		candidate.setCogitation(-1);
@@ -70,11 +70,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setInfrastructureKnowledge(0);
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("cogitationは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestCogitationError02() {
+	public void validateScoresTestCogitationError02() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(5);
 		candidate.setCogitation(6);
@@ -83,11 +83,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setInfrastructureKnowledge(5);
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("cogitationは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestCoodinationError01() {
+	public void validateScoresTestCoodinationError01() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(0);
 		candidate.setCogitation(0);
@@ -96,11 +96,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setInfrastructureKnowledge(0);
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("coodinationは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestCoodinationError02() {
+	public void validateScoresTestCoodinationError02() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(5);
 		candidate.setCogitation(5);
@@ -109,11 +109,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setInfrastructureKnowledge(5);
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("coodinationは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestProgrammingAbilityError01() {
+	public void validateScoresTestProgrammingAbilityError01() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(0);
 		candidate.setCogitation(0);
@@ -122,11 +122,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setInfrastructureKnowledge(0);
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("programmingAbilityは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestProgrammingAbilityError02() {
+	public void validateScoresTestProgrammingAbilityError02() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(5);
 		candidate.setCogitation(5);
@@ -135,11 +135,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setInfrastructureKnowledge(5);
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("programmingAbilityは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestInfrastructureKnowledgeError01() {
+	public void validateScoresTestInfrastructureKnowledgeError01() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(0);
 		candidate.setCogitation(0);
@@ -148,11 +148,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setInfrastructureKnowledge(-1);
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("infrastructureKnowledgeは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestInfrastructureKnowledgerror02() {
+	public void validateScoresTestInfrastructureKnowledgerror02() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(5);
 		candidate.setCogitation(5);
@@ -161,11 +161,11 @@ public class MemberJudgeServiceImplTest {
 		candidate.setInfrastructureKnowledge(6);
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("infrastructureKnowledgeは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestMultipleError01() {
+	public void validateScoresTestMultipleError01() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(-1);
 		candidate.setCogitation(-1);
@@ -178,11 +178,11 @@ public class MemberJudgeServiceImplTest {
 		expected.add("coodinationは0~5の整数値を入力してください。");
 		expected.add("programmingAbilityは0~5の整数値を入力してください。");
 		expected.add("infrastructureKnowledgeは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
-	public void validateScoreTestMultipleError02() {
+	public void validateScoresTestMultipleError02() {
 		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
 		candidate.setEventPlanning(6);
 		candidate.setCogitation(6);
@@ -195,7 +195,7 @@ public class MemberJudgeServiceImplTest {
 		expected.add("coodinationは0~5の整数値を入力してください。");
 		expected.add("programmingAbilityは0~5の整数値を入力してください。");
 		expected.add("infrastructureKnowledgeは0~5の整数値を入力してください。");
-		assertEquals(expected, MemberJudgeServiceImpl.validateScore(candidate));
+		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test

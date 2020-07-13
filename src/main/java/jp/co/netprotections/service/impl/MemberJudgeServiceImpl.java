@@ -11,7 +11,7 @@ import jp.co.netprotections.dto.MemberJudgeRequestDto;
 public class MemberJudgeServiceImpl {
 	// スコアが不正な場合、エラーメッセージを返す
 	@Autowired
-	public static ArrayList<String> validateScore(MemberJudgeRequestDto candidate) {
+	public static ArrayList<String> validateScores(MemberJudgeRequestDto candidate) {
 		ArrayList<String> errorList = new ArrayList<String>();
 		if (candidate.getEventPlanning() < 0
 			|| candidate.getEventPlanning() > 5) {
@@ -34,6 +34,19 @@ public class MemberJudgeServiceImpl {
 			errorList.add("infrastructureKnowledgeは0~5の整数値を入力してください。");
 		}
 		return errorList;
+	}
+
+	// スコア評価をまとめて呼び出すメソッド
+	@Autowired
+	public static boolean judgeScores(MemberJudgeRequestDto candidate) {
+		if (MemberJudgeServiceImpl.isWellEventPlanning(candidate)
+			&& MemberJudgeServiceImpl.isWellCogitation(candidate)
+			&& MemberJudgeServiceImpl.isWellCoodination(candidate)
+			&& MemberJudgeServiceImpl.isOverPassingScore(candidate, 10)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// イベント企画力が1以下ならfalse、それ以外ならtrueを返す
