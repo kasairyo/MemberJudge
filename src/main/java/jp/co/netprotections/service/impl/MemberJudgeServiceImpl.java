@@ -1,16 +1,66 @@
 package jp.co.netprotections.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import jp.co.netprotections.dto.MemberJudgeRequestDto;
+import jp.co.netprotections.dto.MemberJudgeRequestListDto;
+import jp.co.netprotections.dto.MemberJudgeResponseDto;
+import jp.co.netprotections.dto.MemberJudgeResponseListDto;
+import jp.co.netprotections.service.MemberJudgeService;
 
-@Component
-public class MemberJudgeServiceImpl {
+@Service
+public class MemberJudgeServiceImpl implements MemberJudgeService {
+	@Override
+	public MemberJudgeResponseListDto judgeCandidates(MemberJudgeRequestListDto requestedList) {
+		List<MemberJudgeRequestDto> candidatesList = requestedList.getMemberCandidatesList();
+		List<MemberJudgeResponseDto> judgedCandidatesResultList = new ArrayList<MemberJudgeResponseDto>();
+		if (candidatesList.size() != 0) {
+			for (int i = 0; i < candidatesList.size(); i++) {
+				MemberJudgeRequestDto candidate = candidatesList.get(i);
+				MemberJudgeResponseDto candidateResult = new MemberJudgeResponseDto();
+				ArrayList<String> errorList = new ArrayList<String>();
+				// 隊員名のバリデーションチェック
+				if (candidate.getMemberName().isEmpty()) {
+					candidateResult.setMemberName(null);
+					errorList.add("隊員名が入力されていません。");
+				} else {
+					candidateResult.setMemberName(candidate.getMemberName());
+				}
+				// スコアのバリデーションチェック
+				errorList.addAll(validateScores(candidate));
+				candidateResult.setErrorList(errorList);
+				// スコアの評価
+				if (errorList.isEmpty()) {
+					if (judgeScores(candidate)) {
+						candidateResult.setEnlistedPropriety(true);
+					} else {
+						candidateResult.setEnlistedPropriety(false);
+					}
+				}
+				judgedCandidatesResultList.add(candidateResult);
+			}
+			MemberJudgeResponseListDto resultResponse = new MemberJudgeResponseListDto();
+			resultResponse.setJudgedCandidatesResultList(judgedCandidatesResultList);
+			return resultResponse;
+		} else {
+			// 隊員情報が1件以上入力されているかどうかのバリデーションチェック
+			MemberJudgeResponseDto errorCandidate = new MemberJudgeResponseDto();
+			ArrayList<String> errorList = new ArrayList<String>();
+			ArrayList<MemberJudgeResponseDto> errorResponse = new ArrayList<MemberJudgeResponseDto>();
+			MemberJudgeResponseListDto resultResponse = new MemberJudgeResponseListDto();
+			errorCandidate.setEnlistedPropriety(false);
+			errorList.add("隊員情報が1件も入力されていません。");
+			errorCandidate.setErrorList(errorList);
+			errorResponse.add(errorCandidate);
+			resultResponse.setJudgedCandidatesResultList(errorResponse);
+			return resultResponse;
+		}
+	}
+
 	// スコアが不正な場合、エラーメッセージを返す
-	@Autowired
 	public static ArrayList<String> validateScores(MemberJudgeRequestDto candidate) {
 		ArrayList<String> errorList = new ArrayList<String>();
 		if (candidate.getEventPlanning() < 0
@@ -37,12 +87,11 @@ public class MemberJudgeServiceImpl {
 	}
 
 	// スコア評価をまとめて呼び出すメソッド
-	@Autowired
 	public static boolean judgeScores(MemberJudgeRequestDto candidate) {
-		if (MemberJudgeServiceImpl.isWellEventPlanning(candidate)
-			&& MemberJudgeServiceImpl.isWellCogitation(candidate)
-			&& MemberJudgeServiceImpl.isWellCoodination(candidate)
-			&& MemberJudgeServiceImpl.isOverPassingScore(candidate, 10)) {
+		if (isWellEventPlanning(candidate)
+			&& isWellCogitation(candidate)
+			&& isWellCoodination(candidate)
+			&& isOverPassingScore(candidate, 10)) {
 			return true;
 		} else {
 			return false;
@@ -50,7 +99,6 @@ public class MemberJudgeServiceImpl {
 	}
 
 	// イベント企画力が1以下ならfalse、それ以外ならtrueを返す
-	@Autowired
 	public static boolean isWellEventPlanning(MemberJudgeRequestDto candidate) {
 		if (candidate.getEventPlanning() <= 1) {
 			return false;
@@ -60,7 +108,6 @@ public class MemberJudgeServiceImpl {
 	}
 
 	// 思考力が1以下ならfalse、それ以外ならtrueを返す
-	@Autowired
 	public static boolean isWellCogitation(MemberJudgeRequestDto candidate) {
 		if (candidate.getCogitation() <= 1) {
 			return false;
@@ -70,7 +117,6 @@ public class MemberJudgeServiceImpl {
 	}
 
 	// 調整力が1以下ならfalse、それ以外ならtrueを返す
-	@Autowired
 	public static boolean isWellCoodination(MemberJudgeRequestDto candidate) {
 		if (candidate.getCoodination() <= 1) {
 			return false;
@@ -80,7 +126,6 @@ public class MemberJudgeServiceImpl {
 	}
 
 	// 候補者の合計得点を算出する
-	@Autowired
 	public static boolean isOverPassingScore(MemberJudgeRequestDto candidate, int passingScore) {
 		int totalScore = 0;
 		totalScore += candidate.getEventPlanning();
