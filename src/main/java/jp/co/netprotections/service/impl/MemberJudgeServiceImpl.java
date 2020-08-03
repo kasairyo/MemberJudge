@@ -11,6 +11,10 @@ import jp.co.netprotections.dto.MemberJudgeResponseDto;
 import jp.co.netprotections.dto.MemberJudgeResponseListDto;
 import jp.co.netprotections.service.MemberJudgeService;
 
+/**
+ * サービス層の実装クラス
+ * @author r.kasai
+ */
 @Service
 public class MemberJudgeServiceImpl implements MemberJudgeService {
 	@Override

@@ -6,6 +6,10 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
+/**
+ *リクエストに含まれる、候補者個人の情報をまとめたDTOクラス
+ * @author r.kasai
+ */
 @Component
 public class MemberJudgeRequestDto {
 	@NotNull(message = "候補者名を入力してください。")

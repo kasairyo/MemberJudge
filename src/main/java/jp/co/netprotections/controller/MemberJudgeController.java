@@ -12,6 +12,11 @@ import jp.co.netprotections.dto.MemberJudgeRequestListDto;
 import jp.co.netprotections.dto.MemberJudgeResponseListDto;
 import jp.co.netprotections.service.MemberJudgeService;
 
+/**
+ * コントローラークラス
+ * 候補者一覧を受け取り、Serviceクラスで処理をした結果をクライアントに返す
+ * @author r.kasai
+ */
 @RestController
 public class MemberJudgeController {
 	@Autowired
