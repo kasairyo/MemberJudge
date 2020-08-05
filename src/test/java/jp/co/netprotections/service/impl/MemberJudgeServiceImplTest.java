@@ -14,13 +14,14 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestTrue01() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setMemberName("Test");
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(5);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		candidatesList.add(candidate);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -32,13 +33,14 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestTrue02() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setMemberName("Test");
-		candidate.setEventPlanning(2);
-		candidate.setCogitation(2);
-		candidate.setCoodination(2);
-		candidate.setProgrammingAbility(2);
-		candidate.setInfrastructureKnowledge(3);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(2)
+			.cogitation(2)
+			.coodination(2)
+			.programmingAbility(2)
+			.infrastructureKnowledge(3)
+			.build();
 		candidatesList.add(candidate);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -50,21 +52,23 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestTrue03() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate1 = new MemberJudgeRequestDto();
-		candidate1.setMemberName("Test1");
-		candidate1.setEventPlanning(2);
-		candidate1.setCogitation(2);
-		candidate1.setCoodination(2);
-		candidate1.setProgrammingAbility(2);
-		candidate1.setInfrastructureKnowledge(3);
+		MemberJudgeRequestDto candidate1 = MemberJudgeRequestDto.builder()
+			.memberName("Test1")
+			.eventPlanning(2)
+			.cogitation(2)
+			.coodination(2)
+			.programmingAbility(2)
+			.infrastructureKnowledge(3)
+			.build();
 		candidatesList.add(candidate1);
-		MemberJudgeRequestDto candidate2 = new MemberJudgeRequestDto();
-		candidate2.setMemberName("Test2");
-		candidate2.setEventPlanning(5);
-		candidate2.setCogitation(5);
-		candidate2.setCoodination(5);
-		candidate2.setProgrammingAbility(5);
-		candidate2.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate2 = MemberJudgeRequestDto.builder()
+			.memberName("Test2")
+			.eventPlanning(5)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		candidatesList.add(candidate2);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -76,13 +80,14 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestFalse01() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setMemberName("Test");
-		candidate.setEventPlanning(2);
-		candidate.setCogitation(2);
-		candidate.setCoodination(2);
-		candidate.setProgrammingAbility(2);
-		candidate.setInfrastructureKnowledge(2);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(2)
+			.cogitation(2)
+			.coodination(2)
+			.programmingAbility(2)
+			.infrastructureKnowledge(2)
+			.build();
 		candidatesList.add(candidate);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -94,13 +99,14 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestFalse02() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setMemberName("Test");
-		candidate.setEventPlanning(1);
-		candidate.setCogitation(5);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(1)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		candidatesList.add(candidate);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -112,13 +118,14 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestFalse03() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setMemberName("Test");
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(1);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(1)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		candidatesList.add(candidate);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -130,13 +137,14 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestFalse04() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setMemberName("Test");
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(5);
-		candidate.setCoodination(1);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(5)
+			.coodination(1)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		candidatesList.add(candidate);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -148,13 +156,14 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestFalse05() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setMemberName("Test");
-		candidate.setEventPlanning(6);
-		candidate.setCogitation(5);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(6)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		candidatesList.add(candidate);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -166,13 +175,14 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestFalse06() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setMemberName("Test");
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(5);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(-1);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(-1)
+			.build();
 		candidatesList.add(candidate);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -185,12 +195,13 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestFalse07() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setMemberName("Test");
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(5);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(5)
+			.build();
 		candidatesList.add(candidate);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -202,21 +213,23 @@ public class MemberJudgeServiceImplTest {
 	public void judgeCandidatesTestFalse08() {
 		MemberJudgeRequestListDto request = new MemberJudgeRequestListDto();
 		ArrayList<MemberJudgeRequestDto> candidatesList = new ArrayList<MemberJudgeRequestDto>();
-		MemberJudgeRequestDto candidate1 = new MemberJudgeRequestDto();
-		candidate1.setMemberName("Test1");
-		candidate1.setEventPlanning(2);
-		candidate1.setCogitation(2);
-		candidate1.setCoodination(2);
-		candidate1.setProgrammingAbility(2);
-		candidate1.setInfrastructureKnowledge(3);
+		MemberJudgeRequestDto candidate1 = MemberJudgeRequestDto.builder()
+			.memberName("Test1")
+			.eventPlanning(2)
+			.cogitation(2)
+			.coodination(2)
+			.programmingAbility(2)
+			.infrastructureKnowledge(3)
+			.build();
 		candidatesList.add(candidate1);
-		MemberJudgeRequestDto candidate2 = new MemberJudgeRequestDto();
-		candidate2.setMemberName("Test2");
-		candidate2.setEventPlanning(0);
-		candidate2.setCogitation(5);
-		candidate2.setCoodination(5);
-		candidate2.setProgrammingAbility(5);
-		candidate2.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate2 = MemberJudgeRequestDto.builder()
+			.memberName("Test2")
+			.eventPlanning(0)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		candidatesList.add(candidate2);
 		request.setMemberCandidatesList(candidatesList);
 		MemberJudgeServiceImpl memberJudgeServiceImpl = new MemberJudgeServiceImpl();
@@ -226,36 +239,42 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestNoError01() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(0);
-		candidate.setCogitation(0);
-		candidate.setCoodination(0);
-		candidate.setProgrammingAbility(0);
-		candidate.setInfrastructureKnowledge(0);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(0)
+			.cogitation(0)
+			.coodination(0)
+			.programmingAbility(0)
+			.infrastructureKnowledge(0)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
 	public void validateScoresTestNoError02() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(5);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
 	}
 
 	@Test
 	public void validateScoresTestEventPlanningError01() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(-1);
-		candidate.setCogitation(0);
-		candidate.setCoodination(0);
-		candidate.setProgrammingAbility(0);
-		candidate.setInfrastructureKnowledge(0);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(-1)
+			.cogitation(0)
+			.coodination(0)
+			.programmingAbility(0)
+			.infrastructureKnowledge(0)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("eventPlanningは0~5の整数値を入力してください。");
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
@@ -263,12 +282,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestEventPlanningError02() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(6);
-		candidate.setCogitation(5);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(6)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("eventPlanningは0~5の整数値を入力してください。");
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
@@ -276,12 +297,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestCogitationError01() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(0);
-		candidate.setCogitation(-1);
-		candidate.setCoodination(0);
-		candidate.setProgrammingAbility(0);
-		candidate.setInfrastructureKnowledge(0);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(0)
+			.cogitation(-1)
+			.coodination(0)
+			.programmingAbility(0)
+			.infrastructureKnowledge(0)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("cogitationは0~5の整数値を入力してください。");
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
@@ -289,12 +312,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestCogitationError02() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(6);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(6)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("cogitationは0~5の整数値を入力してください。");
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
@@ -302,12 +327,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestCoodinationError01() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(0);
-		candidate.setCogitation(0);
-		candidate.setCoodination(-1);
-		candidate.setProgrammingAbility(0);
-		candidate.setInfrastructureKnowledge(0);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(0)
+			.cogitation(0)
+			.coodination(-1)
+			.programmingAbility(0)
+			.infrastructureKnowledge(0)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("coodinationは0~5の整数値を入力してください。");
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
@@ -315,12 +342,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestCoodinationError02() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(5);
-		candidate.setCoodination(6);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(5)
+			.coodination(6)
+			.programmingAbility(5)
+			.infrastructureKnowledge(5)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("coodinationは0~5の整数値を入力してください。");
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
@@ -328,12 +357,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestProgrammingAbilityError01() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(0);
-		candidate.setCogitation(0);
-		candidate.setCoodination(0);
-		candidate.setProgrammingAbility(-1);
-		candidate.setInfrastructureKnowledge(0);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(0)
+			.cogitation(0)
+			.coodination(0)
+			.programmingAbility(-1)
+			.infrastructureKnowledge(0)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("programmingAbilityは0~5の整数値を入力してください。");
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
@@ -341,12 +372,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestProgrammingAbilityError02() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(5);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(6);
-		candidate.setInfrastructureKnowledge(5);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(6)
+			.infrastructureKnowledge(5)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("programmingAbilityは0~5の整数値を入力してください。");
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
@@ -354,12 +387,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestInfrastructureKnowledgeError01() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(0);
-		candidate.setCogitation(0);
-		candidate.setCoodination(0);
-		candidate.setProgrammingAbility(0);
-		candidate.setInfrastructureKnowledge(-1);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(0)
+			.cogitation(0)
+			.coodination(0)
+			.programmingAbility(0)
+			.infrastructureKnowledge(-1)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("infrastructureKnowledgeは0~5の整数値を入力してください。");
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
@@ -367,12 +402,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestInfrastructureKnowledgerror02() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(5);
-		candidate.setCoodination(5);
-		candidate.setProgrammingAbility(5);
-		candidate.setInfrastructureKnowledge(6);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(5)
+			.coodination(5)
+			.programmingAbility(5)
+			.infrastructureKnowledge(6)
+			.build();
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("infrastructureKnowledgeは0~5の整数値を入力してください。");
 		assertEquals(expected, MemberJudgeServiceImpl.validateScores(candidate));
@@ -380,7 +417,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestMultipleError01() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(-1)
+			.cogitation(-1)
+			.coodination(-1)
+			.programmingAbility(-1)
+			.infrastructureKnowledge(-1)
+			.build();
 		candidate.setEventPlanning(-1);
 		candidate.setCogitation(-1);
 		candidate.setCoodination(-1);
@@ -397,7 +441,14 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void validateScoresTestMultipleError02() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(6)
+			.cogitation(6)
+			.coodination(6)
+			.programmingAbility(6)
+			.infrastructureKnowledge(6)
+			.build();
 		candidate.setEventPlanning(6);
 		candidate.setCogitation(6);
 		candidate.setCoodination(6);
@@ -414,89 +465,105 @@ public class MemberJudgeServiceImplTest {
 
 	@Test
 	public void isWellEventPlanningTestTrue() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(2);
-		candidate.setCogitation(3);
-		candidate.setCoodination(3);
-		candidate.setProgrammingAbility(3);
-		candidate.setInfrastructureKnowledge(3);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(2)
+			.cogitation(3)
+			.coodination(3)
+			.programmingAbility(3)
+			.infrastructureKnowledge(3)
+			.build();
 		assertEquals(true, MemberJudgeServiceImpl.isWellEventPlanning(candidate));
 	}
 
 	@Test
 	public void isWellEventPlanningTestFalse() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(1);
-		candidate.setCogitation(3);
-		candidate.setCoodination(3);
-		candidate.setProgrammingAbility(3);
-		candidate.setInfrastructureKnowledge(3);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(1)
+			.cogitation(3)
+			.coodination(3)
+			.programmingAbility(3)
+			.infrastructureKnowledge(3)
+			.build();
 		assertEquals(false, MemberJudgeServiceImpl.isWellEventPlanning(candidate));
 	}
 
 	@Test
 	public void isWellCogitationTestTrue() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(3);
-		candidate.setCogitation(2);
-		candidate.setCoodination(3);
-		candidate.setProgrammingAbility(3);
-		candidate.setInfrastructureKnowledge(3);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(3)
+			.cogitation(2)
+			.coodination(3)
+			.programmingAbility(3)
+			.infrastructureKnowledge(3)
+			.build();
 		assertEquals(true, MemberJudgeServiceImpl.isWellCogitation(candidate));
 	}
 
 	@Test
 	public void isWellCogitationTestFalse() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(3);
-		candidate.setCogitation(1);
-		candidate.setCoodination(3);
-		candidate.setProgrammingAbility(3);
-		candidate.setInfrastructureKnowledge(3);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(3)
+			.cogitation(1)
+			.coodination(3)
+			.programmingAbility(3)
+			.infrastructureKnowledge(3)
+			.build();
 		assertEquals(false, MemberJudgeServiceImpl.isWellCogitation(candidate));
 	}
 
 	@Test
 	public void isWellCoodinationTestTrue() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(3);
-		candidate.setCogitation(3);
-		candidate.setCoodination(2);
-		candidate.setProgrammingAbility(3);
-		candidate.setInfrastructureKnowledge(3);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(3)
+			.cogitation(3)
+			.coodination(2)
+			.programmingAbility(3)
+			.infrastructureKnowledge(3)
+			.build();
 		assertEquals(true, MemberJudgeServiceImpl.isWellCoodination(candidate));
 	}
 
 	@Test
 	public void isWellCoodinationTestFalse() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(3);
-		candidate.setCogitation(3);
-		candidate.setCoodination(1);
-		candidate.setProgrammingAbility(3);
-		candidate.setInfrastructureKnowledge(3);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(3)
+			.cogitation(3)
+			.coodination(1)
+			.programmingAbility(3)
+			.infrastructureKnowledge(3)
+			.build();
 		assertEquals(false, MemberJudgeServiceImpl.isWellCoodination(candidate));
 	}
 
 	@Test
 	public void isOverPassingScoreTestTrue() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(2);
-		candidate.setCogitation(2);
-		candidate.setCoodination(2);
-		candidate.setProgrammingAbility(2);
-		candidate.setInfrastructureKnowledge(3);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(2)
+			.cogitation(2)
+			.coodination(2)
+			.programmingAbility(2)
+			.infrastructureKnowledge(3)
+			.build();
 		assertEquals(true, MemberJudgeServiceImpl.isOverPassingScore(candidate, 10));
 	}
 
 	@Test
 	public void isOverPassingScoreTestFalse() {
-		MemberJudgeRequestDto candidate = new MemberJudgeRequestDto();
-		candidate.setEventPlanning(5);
-		candidate.setCogitation(5);
-		candidate.setCoodination(0);
-		candidate.setProgrammingAbility(0);
-		candidate.setInfrastructureKnowledge(0);
+		MemberJudgeRequestDto candidate = MemberJudgeRequestDto.builder()
+			.memberName("Test")
+			.eventPlanning(5)
+			.cogitation(5)
+			.coodination(0)
+			.programmingAbility(0)
+			.infrastructureKnowledge(0)
+			.build();
 		assertEquals(false, MemberJudgeServiceImpl.isOverPassingScore(candidate, 10));
 	}
 }
