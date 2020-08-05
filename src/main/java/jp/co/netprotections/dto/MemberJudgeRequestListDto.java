@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import jp.co.netprotections.constants.MemberJudgeConstants;
 import lombok.Getter;
 
 /**
@@ -12,7 +13,7 @@ import lombok.Getter;
  */
 public class MemberJudgeRequestListDto {
 	@Getter
-	@NotNull(message = "候補者リストがありません。所定の形式でリストを入力してください。")
+	@NotNull(message = MemberJudgeConstants.ERROR_NO_CANDIDATE)
 	private List<MemberJudgeRequestDto> memberCandidatesList;
 
 	public void setMemberCandidatesList(List<MemberJudgeRequestDto> memberCandidatesList) {

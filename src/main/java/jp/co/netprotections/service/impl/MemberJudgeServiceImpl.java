@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import jp.co.netprotections.constants.MemberJudgeConstants;
 import jp.co.netprotections.dto.MemberJudgeRequestDto;
 import jp.co.netprotections.dto.MemberJudgeRequestListDto;
 import jp.co.netprotections.dto.MemberJudgeResponseDto;
@@ -29,7 +30,7 @@ public class MemberJudgeServiceImpl implements MemberJudgeService {
 				// 隊員名のバリデーションチェック
 				if (candidate.getMemberName().isEmpty()) {
 					candidateResult.setMemberName(null);
-					errorList.add("隊員名が入力されていません。");
+					errorList.add(MemberJudgeConstants.ERROR_NO_NAME);
 				} else {
 					candidateResult.setMemberName(candidate.getMemberName());
 				}
@@ -56,7 +57,7 @@ public class MemberJudgeServiceImpl implements MemberJudgeService {
 			ArrayList<MemberJudgeResponseDto> errorResponse = new ArrayList<MemberJudgeResponseDto>();
 			MemberJudgeResponseListDto resultResponse = new MemberJudgeResponseListDto();
 			errorCandidate.setEnlistedPropriety(false);
-			errorList.add("隊員情報が1件も入力されていません。");
+			errorList.add(MemberJudgeConstants.ERROR_NO_CANDIDATE);
 			errorCandidate.setErrorList(errorList);
 			errorResponse.add(errorCandidate);
 			resultResponse.setJudgedCandidatesResultList(errorResponse);
@@ -69,23 +70,23 @@ public class MemberJudgeServiceImpl implements MemberJudgeService {
 		ArrayList<String> errorList = new ArrayList<String>();
 		if (candidate.getEventPlanning() < 0
 			|| candidate.getEventPlanning() > 5) {
-			errorList.add("eventPlanningは0~5の整数値を入力してください。");
+			errorList.add(MemberJudgeConstants.ERROR_EVENT_PLANNING_OUT_OF_RANGE);
 		}
 		if(candidate.getCogitation() < 0
 			|| candidate.getCogitation() > 5) {
-			errorList.add("cogitationは0~5の整数値を入力してください。");
+			errorList.add(MemberJudgeConstants.ERROR_COGITATION_OUT_OF_RANGE);
 		}
 		if(candidate.getCoodination() < 0
 			|| candidate.getCoodination() > 5) {
-			errorList.add("coodinationは0~5の整数値を入力してください。");
+			errorList.add(MemberJudgeConstants.ERROR_COODINATION_OUT_OF_RANGE);
 		}
 		if(candidate.getProgrammingAbility() < 0
 			|| candidate.getProgrammingAbility() > 5) {
-			errorList.add("programmingAbilityは0~5の整数値を入力してください。");
+			errorList.add(MemberJudgeConstants.ERROR_PROGRAMMING_ABILITY_OUT_OF_RANGE);
 		}
 		if(candidate.getInfrastructureKnowledge() < 0
 			|| candidate.getInfrastructureKnowledge() > 5) {
-			errorList.add("infrastructureKnowledgeは0~5の整数値を入力してください。");
+			errorList.add(MemberJudgeConstants.ERROR_INFRASTRUCTURE_KNOWLEDGE_OUT_OF_RANGE);
 		}
 		return errorList;
 	}
